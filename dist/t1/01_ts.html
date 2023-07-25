@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ES6 新增语法 | TypeScript 入门</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    
+    <meta name="description" content="学习使用 TypeScript">
+    
+    <link rel="preload" href="/ts-study/assets/css/0.styles.8acbf88f.css" as="style"><link rel="preload" href="/ts-study/assets/js/app.78fba1cf.js" as="script"><link rel="preload" href="/ts-study/assets/js/2.733019b2.js" as="script"><link rel="preload" href="/ts-study/assets/js/8.55c43a6f.js" as="script"><link rel="prefetch" href="/ts-study/assets/js/10.0753701b.js"><link rel="prefetch" href="/ts-study/assets/js/11.c87ad08d.js"><link rel="prefetch" href="/ts-study/assets/js/12.d0600fdf.js"><link rel="prefetch" href="/ts-study/assets/js/13.2c66f482.js"><link rel="prefetch" href="/ts-study/assets/js/14.e5aab758.js"><link rel="prefetch" href="/ts-study/assets/js/15.efbf1575.js"><link rel="prefetch" href="/ts-study/assets/js/16.488ca6a3.js"><link rel="prefetch" href="/ts-study/assets/js/3.a72851b7.js"><link rel="prefetch" href="/ts-study/assets/js/4.d12742be.js"><link rel="prefetch" href="/ts-study/assets/js/5.216cae74.js"><link rel="prefetch" href="/ts-study/assets/js/6.2d0a63f8.js"><link rel="prefetch" href="/ts-study/assets/js/7.974f9de8.js"><link rel="prefetch" href="/ts-study/assets/js/9.7cc0e6ae.js">
+    <link rel="stylesheet" href="/ts-study/assets/css/0.styles.8acbf88f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/ts-study/" class="home-link router-link-active"><!----> <span class="site-name">TypeScript 入门</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>一、TypeScript快速上手</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading open"><span>初识 TypeScript</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ts-study/t1/02_安装TS.html" class="sidebar-link">安装 TS</a></li><li><a href="/ts-study/t1/03_HelloWorld.html" class="sidebar-link">03_HelloWorld</a></li></ul></section></li><li><section class="sidebar-group collapsable is-sub-group depth-1"><p class="sidebar-heading"><span>TypeScript 常用语法</span> <span class="arrow right"></span></p> <!----></section></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="es6-新增语法"><a href="#es6-新增语法" class="header-anchor">#</a> ES6 新增语法</h1> <h2 id="let-命令"><a href="#let-命令" class="header-anchor">#</a> let 命令</h2> <div class="language- extra-class"><pre class="language-text"><code>    // 用来定义变量.用法和 var 类似,但是所声明的变量,只在 let 命令所在的代码块内有效
+    {
+    let a = 1;
+    var b = 2;
+    }
+
+        a // ReferenceError: a is not defined
+        b // 2
+</code></pre></div><p>上边代码在代码块中分别用了它和 <code>var</code> 声明了两个变量.然后在代码块之外调用这两个变量,结果 <code>let</code> 声明的变量报错,<code>var</code> 声明的变量返回了正确的值.这表明, <code>let</code> 声明的变量只在它所在的代码块有效.</p> <p><code>for</code>循环的计数器,就很适合 let 命令</p> <div class="language- extra-class"><pre class="language-text"><code>    for (let i = 0; i &lt; 10; ++i) {
+        // ...
+    }
+
+    console.log(i);
+    // ReferenceError: i is not defined
+</code></pre></div><p>上面代码中,计数器<code>i</code>只在<code>for</code>循环内有效,在循环体外引用就回报错.</p> <p>下面的代码如果使用 var,最后输出的是<code>10</code>.</p> <div class="language- extra-class"><pre class="language-text"><code>    var a = [];
+    for (var i = 0; i &lt; 10; ++i) {
+        a[i] = function () {
+            console.log(i);
+        };
+    }
+    a[6](); // 10
+</code></pre></div><p>上面代码中,变量<code>i</code>是<code>var</code>命令声明的,在全局范围内都有效,所以全局只有一个<code>i</code>.每一次循环,变量<code>i</code>的值都会发生改变,而循环内被赋值给数组<code>a</code>的函数内部的<code>console.log(i)</code>,里面<code>i</code>指向的就是全局的<code>i</code>.也就是说,所有数组<code>a</code>的成员里面的<code>i</code>,指向的都是同一个<code>i</code>,导致运行时输出的是最后一轮的<code>i</code>的值,也就是<strong>10</strong></p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/ts-study/assets/js/app.78fba1cf.js" defer></script><script src="/ts-study/assets/js/2.733019b2.js" defer></script><script src="/ts-study/assets/js/8.55c43a6f.js" defer></script>
+  </body>
+</html>
